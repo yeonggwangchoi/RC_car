@@ -1,0 +1,74 @@
+#include <mega128.h>
+#include <stdio.h>
+#include <delay.h>
+#include <alcd.h>
+
+unsigned int dis_wall;
+int distance;
+char lcd_text[16];
+
+interrupt [EXT_INT4] void ext_int4_isr(void)
+{
+TCCR0 = 0x00;
+distance=dis_wall*0.170;
+distance=distance-4;
+
+sprintf(lcd_text, "Dis=%i Cm    ", distance);
+lcd_gotoxy(2, 1);
+lcd_puts(lcd_text);
+if(distance<20)
+    {
+    PORTA.7=0x01;
+    delay_ms(300);
+    }   
+    else
+    {
+    PORTA.7=0x00;
+    delay_ms(300);
+    }
+dis_wall=0;
+}
+
+interrupt [TIM0_OVF] void timer0_ovf_isr(void)
+{
+dis_wall++;
+TCNT0=256-45;
+}
+
+void main(void)
+{
+DDRA=0xFF;
+PORTA=0x00;
+DDRE=(1<<DDE7) | (0<<DDE6) | (0<<DDE5) | (0<<DDE4) | (0<<DDE3) | (0<<DDE2) | (0<<DDE1) | (0<<DDE0);
+PORTE=0x7F;
+
+ASSR=0x00;
+TCCR0=0x00;
+TCNT0=256-45;
+OCR0=0x00;
+
+TIMSK=(0<<OCIE2) | (0<<TOIE2) | (0<<TICIE1) | (0<<OCIE1A) | (0<<OCIE1B) | (0<<TOIE1) | (0<<OCIE0) | (1<<TOIE0);
+ETIMSK=(0<<TICIE3) | (0<<OCIE3A) | (0<<OCIE3B) | (0<<TOIE3) | (0<<OCIE3C) | (0<<OCIE1C);
+
+EICRA=(0<<ISC31) | (0<<ISC30) | (0<<ISC21) | (0<<ISC20) | (0<<ISC11) | (0<<ISC10) | (0<<ISC01) | (0<<ISC00);
+EICRB=(0<<ISC71) | (0<<ISC70) | (0<<ISC61) | (0<<ISC60) | (0<<ISC51) | (0<<ISC50) | (1<<ISC41) | (0<<ISC40);
+EIMSK=(0<<INT7) | (0<<INT6) | (0<<INT5) | (1<<INT4) | (0<<INT3) | (0<<INT2) | (0<<INT1) | (0<<INT0);
+EIFR=(0<<INTF7) | (0<<INTF6) | (0<<INTF5) | (1<<INTF4) | (0<<INTF3) | (0<<INTF2) | (0<<INTF1) | (0<<INTF0);
+
+lcd_init(16);
+
+#asm("sei")
+
+lcd_gotoxy(0,0);
+lcd_putsf("Sonic HC-SR04");
+
+while (1)
+      {
+      PORTE.7=0x01;
+      TCCR0=0x02;
+      delay_us(10);
+      PORTE.7=0x00;
+      delay_ms(500);
+
+      }
+}
