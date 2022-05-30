@@ -21,7 +21,7 @@ OutputExecutableFilesDirectory=Release\Exe
 OutputLinkerFilesDirectory=Release\Link
 AllowDisplayFunctionCallTree=1
 CleanUp=2
-TimeStamp1=1421653767
+TimeStamp1=1421816881
 OF2=RC.c
 TimeStamp2=1421248784
 [CompilerDebug]
@@ -128,8 +128,8 @@ UseEEPROMLocation0=1
 DisplayCodeSizeError=1
 RebuildAll=0
 LinkageInformationPresent=1
-COFFileTimeStamp=1421653768
-Build=62
+COFFileTimeStamp=1421816882
+Build=78
 GlobalVarAddr=1280
 EEPROMVarAddr=0
 [DefinedSymbolsDebug]
@@ -239,7 +239,7 @@ DisplayCodeSizeError=1
 RebuildAll=1
 LinkageInformationPresent=0
 COFFileTimeStamp=-1
-Build=62
+Build=78
 [DefinedSymbols]
 Count=0
 [CompilerAdvanced]
@@ -359,8 +359,8 @@ L13=Enhanced function parameters passing: Mode 2
 L14=Automatic register allocation: Yes
 L15=Smart register allocation: Yes
 L16=
-L17=Build: 62
-L18=11121 line(s) compiled
+L17=Build: 78
+L18=11085 line(s) compiled
 L19=No errors
 L20=No warnings
 L21=
@@ -385,7 +385,7 @@ Lines=37
 L1=AVRASM: AVR macro assembler 2.1.30 (build 592 Nov  7 2008 12:38:17)
 L2=Copyright (C) 1995-2008 ATMEL Corporation
 L3=
-L4=C:\cvavreval\BIN\Debug\List\RC_C.asm(2292): No EEPROM data, deleting C:\cvavreval\BIN\Debug\Exe\RC_C.eep
+L4=C:\cvavreval\BIN\Debug\List\RC_C.asm(2256): No EEPROM data, deleting C:\cvavreval\BIN\Debug\Exe\RC_C.eep
 L5=
 L6=ATmega128 memory use summary [bytes]:
 L7=Segment   Begin    End      Code   Data   Used    Size   Use%
@@ -400,7 +400,7 @@ Row=0
 Column=0
 ScrollPosX=0
 ScrollPosY=0
-TimeStamp=1421708448
+TimeStamp=1421816930
 [BookmarksFoldedCode]
 Files=3
 F1=C:\cvavreval\BIN\RC_C.c
@@ -425,11 +425,11 @@ BK9=-1
 [FoldedCode1]
 Blocks=0
 [Bookmarks2]
-TimeStamp=1421653767
-Row=23
-Column=15
+TimeStamp=1421816881
+Row=67
+Column=132
 ScrollPosX=0
-ScrollPosY=0
+ScrollPosY=6
 BK0=-1
 BK1=-1
 BK2=-1
